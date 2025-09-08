@@ -1,0 +1,62 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('parcels', function (Blueprint $table) {
+            $table->id();
+
+            // Tracking
+            $table->string('tracking_number')->unique();
+
+            // Sender / Receiver
+            $table->unsignedBigInteger('customer_id')->nullable(); // Sender
+            $table->string('receiver_name');
+            $table->string('receiver_phone');
+            $table->string('receiver_address');
+
+            // Parcel Info
+            $table->string('parcel_type')->nullable(); // e.g., Document, Box, Fragile
+            $table->decimal('weight', 8, 2)->nullable();
+            $table->decimal('cost', 10, 2)->default(0);
+
+            // Status
+            $table->enum('status', [
+                'pending', 'in_transit', 'delivered', 'cancelled'
+            ])->default('pending');
+
+            // Branch & Staff
+            $table->unsignedBigInteger('origin_branch_id')->nullable();
+            $table->unsignedBigInteger('destination_branch_id')->nullable();
+            $table->unsignedBigInteger('assigned_staff_id')->nullable();
+
+            // Delivery Info
+            $table->timestamp('shipped_at')->nullable();
+            $table->timestamp('delivered_at')->nullable();
+
+            $table->timestamps();
+
+            // // Foreign Keys
+            // $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
+            // $table->foreign('origin_branch_id')->references('id')->on('branches')->onDelete('set null');
+            // $table->foreign('destination_branch_id')->references('id')->on('branches')->onDelete('set null');
+            // $table->foreign('assigned_staff_id')->references('id')->on('staff')->onDelete('set null');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('parcels');
+    }
+};
