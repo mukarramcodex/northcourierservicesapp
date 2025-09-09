@@ -15,13 +15,13 @@
         </thead>
         <tbody>
             @foreach($branches as $branch)
-                <tr class="border-b">
-                    <td class="px-3 py-2">{{ $branch->id }}</td>
-                    <td class="px-3 py-2">{{ $branch->name }}</td>
-                    <td class="px-3 py-2">{{ $branch->code }}</td>
-                    <td class="px-3 py-2">{{ $branch->city }}</td>
-                    <td class="px-3 py-2">{{ ucfirst($branch->status) }}</td>
-                    <td class="px-3 py-2">
+                <tr class="border-b bg-white">
+                    <td class="px-3 py-2 text-green-800 font-medium">{{ $branch->id }}</td>
+                    <td class="px-3 py-2 text-green-800 font-medium">{{ $branch->name }}</td>
+                    <td class="px-3 py-2 text-green-800 font-medium">{{ $branch->code }}</td>
+                    <td class="px-3 py-2 text-green-800 font-medium">{{ $branch->city }}</td>
+                    <td class="px-3 py-2 text-green-800 font-medium">{{ ucfirst($branch->status) }}</td>
+                    <td class="px-3 py-2 ">
                         <a href="{{ route('branches.show', $branch) }}" class="text-blue-600">View</a> |
                         <a href="{{ route('branches.edit', $branch) }}" class="text-yellow-600">Edit</a> |
                         <form action="{{ route('branches.destroy', $branch) }}" method="POST" class="inline">
