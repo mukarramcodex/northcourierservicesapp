@@ -1,20 +1,20 @@
 <x-layouts.app>
-    <h1 class="text-2xl font-bold mb-4">Parcels</h1>
+    <h1 class="text-2xl font-bold mb-4 text-[#015428]">Parcels</h1>
 
-    <a href="{{ route('parcels.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Parcel</a>
+    <a href="{{ route('parcels.create') }}" class="bg-[#017236] text-white px-4 py-2 rounded">Add Parcel</a>
 
     <table class="w-full mt-4 border">
         <thead>
-            <tr class="bg-gray-200">
-                <th class="p-2 border">Tracking #</th>
-                <th class="p-2 border">Customer</th>
-                <th class="p-2 border">Receiver</th>
-                <th class="p-2 border">Status</th>
-                <th class="p-2 border">Origin</th>
-                <th class="p-2 border">Destination</th>
-                <th class="p-2 border">Staff</th>
-                <th class="p-2 border">Cost</th>
-                <th class="p-2 border">Actions</th>
+            <tr class="bg-[#017236]">
+                <th class="p-2">Tracking #</th>
+                <th class="p-2">Customer</th>
+                <th class="p-2">Receiver</th>
+                <th class="p-2">Status</th>
+                <th class="p-2">Origin</th>
+                <th class="p-2">Destination</th>
+                <th class="p-2">Staff</th>
+                <th class="p-2">Cost</th>
+                <th class="p-2">Actions</th>
             </tr>
         </thead>
         <tbody>

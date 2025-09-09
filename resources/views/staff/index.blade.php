@@ -1,18 +1,18 @@
 <x-layouts.app>
-    <h1 class="text-2xl font-bold mb-4">Staff Members</h1>
+    <h1 class="text-2xl font-bold mb-4 text-black">Staff Members</h1>
 
-    <a href="{{ route('staff.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Staff</a>
+    <a href="{{ route('staff.create') }}" class="bg-[#017236] text-white px-4 py-2 rounded">Add Staff</a>
 
     <table class="w-full mt-4 border">
         <thead>
-            <tr class="bg-gray-200">
-                <th class="p-2 border">Name</th>
-                <th class="p-2 border">Email</th>
-                <th class="p-2 border">Phone</th>
-                <th class="p-2 border">Role</th>
-                <th class="p-2 border">Branch</th>
-                <th class="p-2 border">Salary</th>
-                <th class="p-2 border">Actions</th>
+            <tr class="bg-[#017236]">
+                <th class="p-2">Name</th>
+                <th class="p-2">Email</th>
+                <th class="p-2">Phone</th>
+                <th class="p-2">Role</th>
+                <th class="p-2">Branch</th>
+                <th class="p-2">Salary</th>
+                <th class="p-2">Actions</th>
             </tr>
         </thead>
         <tbody>

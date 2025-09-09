@@ -1,10 +1,10 @@
 <x-layouts.app>
-    <h1 class="text-2xl font-bold mb-4">Branches</h1>
-    <a href="{{ route('branches.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">+ New Branch</a>
+    <h1 class="text-2xl font-bold mb-4 text-black">Branches</h1>
+    <a href="{{ route('branches.create') }}" class="bg-[#017236] text-white px-4 py-2 rounded">+ New Branch</a>
 
     <table class="table-auto w-full mt-4 border">
         <thead>
-            <tr class="bg-gray-100">
+            <tr class="bg-[#017236]">
                 <th class="px-3 py-2">ID</th>
                 <th class="px-3 py-2">Name</th>
                 <th class="px-3 py-2">Code</th>
