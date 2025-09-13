@@ -1,3 +1,7 @@
-<div>
-    <!-- Order your soul. Reduce your wants. - Augustine -->
-</div>
+<x-layouts.app>
+    <div>
+        <h1>
+            Settings
+        </h1>
+    </div>
+</x-layouts.app>

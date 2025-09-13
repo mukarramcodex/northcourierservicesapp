@@ -1,3 +1,5 @@
-<div>
-    <!-- You must be the change you wish to see in the world. - Mahatma Gandhi -->
-</div>
+<x-layouts.app>
+    <div>
+        <h1>Website </h1>
+    </div>
+</x-layouts.app>

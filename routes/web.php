@@ -11,10 +11,6 @@ use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/home', function () {
-    return view('welcome');
-})->name('home');
-
 Route::get('/', function () {
     return redirect()->route('login');
 });
