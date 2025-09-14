@@ -8,6 +8,7 @@ use App\Models\Parcel;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Picqer\Barcode\BarcodeGenerator;
 use Picqer\Barcode\BarcodeGeneratorSVG;
 use Spatie\Browsershot\Browsershot;
 
@@ -119,7 +120,7 @@ class ParcelController extends Controller
 
         $generator = new BarcodeGeneratorSVG();
         $barcode = base64_encode(
-            $generator->getBarcode($tracking_number, BarcodeGeneratorSVG::TYPE_CODE_128)
+            $generator->getBarcode($tracking_number, BarcodeGenerator::TYPE_CODE_128)
         );
 
         $html = View::make('parcels.pdf', compact('parcel', 'barcode'))->render();
