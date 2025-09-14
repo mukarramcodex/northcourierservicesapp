@@ -1,27 +1,46 @@
 <div class="p-6 space-y-6">
     <!-- Top Stats -->
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div class="p-4 bg-[#017236] shadow rounded-2xl text-white">
-            <h3 class="text-sm font-semibold">Parcels</h3>
-            <p class="text-2xl font-bold">{{ $totalParcels }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
+            <div>
+                <h3 class="text-sm font-semibold">Parcels</h3>
+                <p class="text-2xl font-bold">{{ $totalParcels }}</p>
+            </div>
+            <div class="text-white/80">
+                <x-heroicon-o-truck class="w-10 h-10 text-white/80" />
+            </div>
         </div>
-        <div class="p-4 bg-[#017236] shadow rounded-2xl text-white">
-            <h3 class="text-sm font-semibold ">Customers</h3>
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
+            <div>
+                <h3 class="text-sm font-semibold ">Customers</h3>
             <p class="text-2xl font-bold">{{ $totalCustomers }}</p>
+            </div>
+            <div>
+                <x-heroicon-o-users class="w-10 h-10 text-white/80" />
+            </div>
+
         </div>
-        <div class="p-4 bg-[#017236] shadow rounded-2xl text-white">
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
             <h3 class="text-sm font-semibold ">Staffs</h3>
             <p class="text-2xl font-bold">{{ $totalStaffs }}</p>
         </div>
-        <div class="p-4 bg-[#017236] shadow rounded-2xl text-white">
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
             <h3 class="text-sm font-semibold ">Branches</h3>
             <p class="text-2xl font-bold">{{ $totalBranches }}</p>
         </div>
-        <div class="p-4 bg-[#017236] shadow rounded-2xl text-white">
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
             <h3 class="text-sm font-semibold ">Revenue</h3>
             <p class="text-2xl font-bold">Rs {{ number_format($totalRevenue) }}</p>
         </div>
-        <div class="p-4 bg-[#017236] shadow rounded-2xl text-white">
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
+            <h3 class="text-sm font-semibold ">Users</h3>
+            <p class="text-2xl font-bold">{{ $totalUsers }}</p>
+        </div>
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
+            <h3 class="text-sm font-semibold ">Users</h3>
+            <p class="text-2xl font-bold">{{ $totalUsers }}</p>
+        </div>
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
             <h3 class="text-sm font-semibold ">Users</h3>
             <p class="text-2xl font-bold">{{ $totalUsers }}</p>
         </div>
@@ -127,5 +146,5 @@
     </div>
 </div> --}}
 
-<!-- Import Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Import Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

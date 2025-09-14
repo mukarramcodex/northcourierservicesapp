@@ -50,4 +50,9 @@ class Parcel extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function trackinglog()
+    {
+        return $this->hasMany(TrackingLog::class);
+    }
 }

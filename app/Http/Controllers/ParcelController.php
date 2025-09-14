@@ -7,6 +7,9 @@ use App\Models\Customer;
 use App\Models\Parcel;
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use Picqer\Barcode\BarcodeGeneratorSVG;
+use Spatie\Browsershot\Browsershot;
 
 class ParcelController extends Controller
 {
@@ -15,7 +18,7 @@ class ParcelController extends Controller
      */
     public function index()
     {
-        $parcels = Parcel::with(['customer','originBranch','destinationBranch','staff'])->get();
+        $parcels = Parcel::with(['customer', 'originBranch', 'destinationBranch', 'staff'])->get();
         return view('parcels.index', compact('parcels'));
     }
 
@@ -27,7 +30,7 @@ class ParcelController extends Controller
         $customers = Customer::all();
         $branches  = Branch::all();
         $staff     = Staff::all();
-        return view('parcels.create', compact('customers','branches','staff'));
+        return view('parcels.create', compact('customers', 'branches', 'staff'));
     }
 
     /**
@@ -71,7 +74,7 @@ class ParcelController extends Controller
         $customers = Customer::all();
         $branches  = Branch::all();
         $staff     = Staff::all();
-        return view('parcels.edit', compact('parcel','customers','branches','staff'));
+        return view('parcels.edit', compact('parcel', 'customers', 'branches', 'staff'));
     }
 
     /**
@@ -106,5 +109,28 @@ class ParcelController extends Controller
     {
         $parcel->delete();
         return redirect()->route('parcels.index')->with('success', 'Parcel deleted successfully.');
+    }
+
+    public function parcelpdf($tracking_number)
+    {
+        $parcel = Parcel::where('tracking_number', $tracking_number)
+            ->with('bookingOfficer')
+            ->firstOrFail();
+
+        $generator = new BarcodeGeneratorSVG();
+        $barcode = base64_encode(
+            $generator->getBarcode($tracking_number, BarcodeGeneratorSVG::TYPE_CODE_128)
+        );
+
+        $html = View::make('parcels.pdf', compact('parcel', 'barcode'))->render();
+        $filename = 'Parcel_' . $parcel->tracking_number . '.pdf';
+        $pdfPath = storage_path('app/public/' . $filename);
+
+        Browsershot::html($html)
+        ->format('A4')
+        ->margins(10, 10, 10, 10) // optional: set margins
+        ->showBackground() // include CSS background
+        ->save($pdfPath);
+        return response()->download($pdfPath)->deleteFileAfterSend(true);
     }
 }
