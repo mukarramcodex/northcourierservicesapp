@@ -7,7 +7,7 @@
                 <p class="text-2xl font-bold">{{ $totalParcels }}</p>
             </div>
             <div class="text-white/80">
-                <x-heroicon-o-truck class="w-10 h-10 text-white/80" />
+                <x-heroicon-o-inbox-stack class="w-10 h-10 text-white/80" />
             </div>
         </div>
         <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
@@ -57,20 +57,20 @@
         </div>
         <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
             <div>
-                <h3 class="text-sm font-semibold ">Users</h3>
+                <h3 class="text-sm font-semibold ">Pending Parcels</h3>
             <p class="text-2xl font-bold">{{ $totalUsers }}</p>
             </div>
             <div>
-                <x-heroicon-o-users class="w-10 h-10 text-white/80" />
+                <x-heroicon-o-clock class="w-10 h-10 text-white/80" />
             </div>
         </div>
         <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
             <div>
-                <h3 class="text-sm font-semibold ">Users</h3>
+                <h3 class="text-sm font-semibold ">Deliveries</h3>
             <p class="text-2xl font-bold">{{ $totalUsers }}</p>
             </div>
             <div>
-                <x-heroicon-o-users class="w-10 h-10 text-white/80" />
+                <x-heroicon-o-truck class="w-10 h-10 text-white/80" />
             </div>
         </div>
     </div>
