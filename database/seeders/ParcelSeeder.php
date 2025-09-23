@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Parcel;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,20 +15,6 @@ class ParcelSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Factory::create();
-
-        foreach (range(1, 10) as $index) {
-            DB::table('parcels')->insert([
-                'tracking_number' => strtoupper($faker->bothify('NCS-#####')),
-                'customer_id' => $faker->numberBetween(1, 20),
-                'branch_id' => $faker->numberBetween(1, 3),
-                'status' => $faker->randomElement(['Pending', 'In Transit', 'Delivered', 'Returned']),
-                'weight' => $faker->randomFloat(2, 0.5, 20),
-                'destination' => $faker->city,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
-
+        Parcel::factory()->count(15)->create();
     }
 }
