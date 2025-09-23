@@ -26,10 +26,6 @@
         <label class="block mb-1 text-black font-medium">City</label>
         <input type="text" name="city" value="{{ old('city', $branch->city ?? '') }}" class="w-full border-2 rounded p-2 bg-white text-black">
     </div>
-    <div>
-        <label class="block mb-1 text-black font-medium">Country</label>
-        <input type="text" name="country" value="{{ old('country', $branch->country ?? 'Pakistan') }}" class="w-full border-2 rounded p-2 text-black bg-white">
-    </div>
 </div>
 
 <div class="mb-4">

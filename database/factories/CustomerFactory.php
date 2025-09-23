@@ -17,7 +17,12 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'email' => $this->faker->email(),
+            'phone' => $this->faker->phoneNumber(),
+            'address' => $this->faker->address(),
+            'city' => $this->faker->randomElement(['Karachi', 'Lahore', 'Islamabad', 'Faisalabad', 'Multan', 'Peshawar', 'Quetta', 'Sialkot', 'Hyderabad', 'Gujranwala']),
+            'status' => $this->faker->randomElement(['active', 'inactive']),
         ];
     }
 }

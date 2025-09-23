@@ -16,7 +16,6 @@ class Branch extends Model
         'email',
         'address',
         'city',
-        'country',
         'status',
     ];
 

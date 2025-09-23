@@ -25,11 +25,6 @@
 </div>
 
 <div class="mb-4">
-    <label class="block">Country</label>
-    <input type="text" name="country" value="{{ old('country', $customer->country ?? 'Pakistan') }}" class="w-full border rounded p-2">
-</div>
-
-<div class="mb-4">
     <label class="block">Status</label>
     <select name="status" class="w-full border rounded p-2">
         <option value="active" @selected(old('status', $customer->status ?? '') == 'active')>Active</option>

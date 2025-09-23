@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Branch;
+use App\Models\Customer;
+use App\Models\Parcel;
+use App\Models\Staff;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +21,11 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'parcel_id' => Parcel::factory(),
+            'customer_id' => Customer::factory(),
+            'staff_id' => Staff::factory(),
+            'branch_id' => Branch::factory(),
+
         ];
     }
 }

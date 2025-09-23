@@ -11,19 +11,31 @@ class Parcel extends Model
 
     protected $fillable = [
         'tracking_number',
+        'booking_id',
+        'receipt_number',
+        'qr_code',
         'customer_id',
         'receiver_name',
         'receiver_phone',
         'receiver_address',
+        'receiver_cnic',
         'parcel_type',
         'weight',
-        'cost',
+        'dimension',
+        'goods_description',
+        'remarks',
+        'fare',
+        'discount',
+        'amount',
+        'total_amount',
         'status',
         'origin_branch_id',
         'destination_branch_id',
         'assigned_staff_id',
         'shipped_at',
         'delivered_at',
+        'orgin',
+        'destination',
     ];
 
     public function customer()

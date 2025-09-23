@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Branch;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class StaffFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'email' => $this->faker->safeEmail,
+            'phone' => $this->faker->phoneNumber,
+            'role' => $this->faker->randomElement(['admin', 'staff', 'rider']),
+            'branch_id' => Branch::factory(),
+            'salary' => $this->faker->randomElement(['25000', '30000', '15000', '50000']),
         ];
     }
 }

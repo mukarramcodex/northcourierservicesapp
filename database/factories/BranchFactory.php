@@ -17,7 +17,12 @@ class BranchFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->company . ' Branch',
+            'code' => 'NCS' . $this->faker->unique()->numerify('##'),
+            'phone' => $this->faker->phoneNumber,
+            'email' => $this->faker->unique()->safeEmail(),
+            'city' => $this->faker->randomElement(['Karachi', 'Lahore', 'Islamabad', 'Faisalabad', 'Multan', 'Peshawar', 'Quetta', 'Sialkot', 'Hyderabad', 'Gujranwala']),
+            'status' => $this->faker->randomElement(['active', 'inactive']),
         ];
     }
 }
