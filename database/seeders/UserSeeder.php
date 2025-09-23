@@ -23,8 +23,26 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Ali',
                 'email' => 'ali@northcourierservices.pk',
-                'role' => 'staff',
+                'role' => 'admin',
                 'password' => bcrypt('Ali123!@#')
+            ],
+            [
+                'name' => 'Khan',
+                'email' => 'khan@northcourierservices.pk',
+                'role' => 'staff',
+                'password' => bcrypt('Qwe123!@#')
+            ],
+            [
+                'name' => 'Nouman',
+                'email' => 'nouman123@gmail.com',
+                'role' => 'customer',
+                'password' => bcrypt('Qwe123!@#')
+            ],
+            [
+                'name' => 'Dildar',
+                'email' => 'dildar@northcourierservices.pk',
+                'role' => 'rider',
+                'password' => bcrypt('Qwe123!@#')
             ]
         ]);
     }
