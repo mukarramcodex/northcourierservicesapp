@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
-            $table->string('country')->default('Pakistan');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique();
+            $table->string('cnic', 15)->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
-            $table->string('country')->default('Pakistan');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
