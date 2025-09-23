@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ParcelSeeder extends Seeder
+class RevenueSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,17 +17,13 @@ class ParcelSeeder extends Seeder
         $faker = Factory::create();
 
         foreach (range(1, 10) as $index) {
-            DB::table('parcels')->insert([
-                'tracking_number' => strtoupper($faker->bothify('NCS-#####')),
-                'customer_id' => $faker->numberBetween(1, 20),
+            DB::table('revenues')->insert([
                 'branch_id' => $faker->numberBetween(1, 3),
-                'status' => $faker->randomElement(['Pending', 'In Transit', 'Delivered', 'Returned']),
-                'weight' => $faker->randomFloat(2, 0.5, 20),
-                'destination' => $faker->city,
+                'month' => $faker->dateTimeBetween('-1 years', 'now')->format('Y-m'),
+                'total_amount' => $faker->randomFloat(2, 50000, 300000),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         }
-
     }
 }
