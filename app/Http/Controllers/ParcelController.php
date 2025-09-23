@@ -41,17 +41,28 @@ class ParcelController extends Controller
     {
         $request->validate([
             'tracking_number'   => 'required|unique:parcels,tracking_number',
+            'booking_id'        => 'required|unique:parcels,booking_id',
+            'receipt_number'    => 'required|unique:parcels,receipt_number',
             'customer_id'       => 'nullable|exists:customers,id',
             'receiver_name'     => 'required|string',
-            'receiver_phone'    => 'required|string',
+            'receiver_phone'    => 'required|numeric',
             'receiver_address'  => 'required|string',
+            'receiver_cnic'     => 'required|numeric',
             'parcel_type'       => 'nullable|string',
             'weight'            => 'nullable|numeric',
-            'cost'              => 'required|numeric',
+            'dimension'         => 'required|string',
+            'goods_description' => 'required|string',
+            'remarks'           => 'required|string',
+            'fare'              => 'required|numeric',
+            'discount'          => 'required|numeric',
+            'amount'            => 'required|numeric',
+            'total_amount'      => 'required|numeric',
             'status'            => 'required|string',
             'origin_branch_id'  => 'nullable|exists:branches,id',
             'destination_branch_id' => 'nullable|exists:branches,id',
             'assigned_staff_id' => 'nullable|exists:staff,id',
+            'origin'            => 'required|string',
+            'destination'       => 'required|string',
         ]);
 
         Parcel::create($request->all());
