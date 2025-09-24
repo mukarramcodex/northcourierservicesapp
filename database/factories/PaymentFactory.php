@@ -25,14 +25,12 @@ class PaymentFactory extends Factory
             'customer_id' => Customer::factory(),
             'staff_id' => Staff::factory(),
             'branch_id' => Branch::factory(),
-            'amount' => $this->faker->randomFloat(),
-            'method' => $this->faker->randomElement(['cash', 'credit', 'debit', 'transfered', 'EasyPaisa/JazzCash']),
+            'amount' => $this->faker->randomFloat(2, 200, 400),
+            'method' => $this->faker->randomElement(['cash', 'card', 'bank_transfer', 'online']),
             'transaction_id' => $this->faker->uuid(),
-            'status' => $this->faker->randomElement(['pending', 'paid']),
-            'created_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
-            'updated_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
+            'status' => $this->faker->randomElement(['pending', 'completed', 'failed', 'refunded']),
             'paid_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
-            'note' => $this->faker->text(),
+            'notes' => $this->faker->text(),
         ];
     }
 }
