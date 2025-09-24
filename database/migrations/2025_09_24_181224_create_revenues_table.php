@@ -28,9 +28,9 @@ return new class extends Migration
             $table->timestamps();
 
             // // Foreign Keys
-            // $table->foreign('parcel_id')->references('id')->on('parcels')->onDelete('set null');
-            // $table->foreign('branch_id')->references('id')->on('branches')->onDelete('set null');
-            // $table->foreign('staff_id')->references('id')->on('staff')->onDelete('set null');
+            $table->foreign('parcel_id')->references('id')->on('parcels')->onDelete('set null');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('set null');
+            $table->foreign('staff_id')->references('id')->on('staffs')->onDelete('set null');
         });
     }
 
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('revenues_tables');
+        Schema::dropIfExists('revenues');
     }
 };

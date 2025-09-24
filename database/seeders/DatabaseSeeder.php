@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\ParcelController;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,9 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([ RoleSeeder::class ]);
         $this->call([ UserSeeder::class ]);
+        $this->call([ StaffSeeder::class ]);
         $this->call([ BranchSeeder::class ]);
         $this->call([ CustomerSeeder::class ]);
-        $this->call([ ParcelController::class ]);
+        $this->call([ ParcelSeeder::class ]);
         $this->call([ PaymentSeeder::class ]);
         $this->call([ RevenueSeeder::class ]);
 

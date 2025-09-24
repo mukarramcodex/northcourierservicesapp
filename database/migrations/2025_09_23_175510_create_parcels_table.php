@@ -24,12 +24,14 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id')->nullable(); // Sender
             $table->string('receiver_name');
             $table->string('receiver_phone');
+            $table->string('receiver_email');
             $table->string('receiver_address');
             $table->string('receiver_cnic', 15)->nullable();
 
             // Parcel Info
             $table->string('parcel_type')->nullable(); // e.g., Document, Box, Fragile
             $table->decimal('weight', 8, 2)->nullable();
+            $table->decimal('stack')->nullable();
             $table->string('dimension')->nullable();
             $table->string('goods_description')->nullable();
             $table->text('remarks')->nullable();
@@ -40,7 +42,7 @@ return new class extends Migration
 
             // Status
             $table->enum('status', [
-                'pending', 'in_transit', 'delivered', 'cancelled'
+                'pending', 'in transit', 'delivered', 'cancelled'
             ])->default('pending');
 
             // Branch & Staff
@@ -53,6 +55,7 @@ return new class extends Migration
             $table->timestamp('delivered_at')->nullable();
             $table->string('origin');
             $table->string('destination');
+            $table->date('booking_time')->nullable();
 
             // // Foreign Keys
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');

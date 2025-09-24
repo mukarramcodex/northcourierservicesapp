@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('salary', 10, 2)->nullable();
             $table->timestamps();
 
-            // $table->foreign('branch_id')->references('id')->on('branches')->onDelete('set null');
+             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('set null');
         });
     }
 

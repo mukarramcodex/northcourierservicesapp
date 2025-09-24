@@ -26,12 +26,12 @@ return new class extends Migration
             $table->timestamp('paid_at')->nullable();
             $table->text('notes')->nullable();
 
-            $table->timestamps();
+            $table->foreign('parcel_id')->references('id')->on('parcels')->onDelete('set null');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
+            $table->foreign('staff_id')->references('id')->on('staffs')->onDelete('set null');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('set null');
 
-            // $table->foreign('parcel_id')->references('id')->on('parcels')->onDelete('set null');
-            // $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
-            // $table->foreign('staff_id')->references('id')->on('staff')->onDelete('set null');
-            // $table->foreign('branch_id')->references('id')->on('branches')->onDelete('set null');
+            $table->timestamps();
         });
     }
 
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments_tables');
+        Schema::dropIfExists('payments');
     }
 };
