@@ -27,8 +27,7 @@
                 <x-heroicon-o-user class="w-10 h-10 text-white/80" />
             </div>
         </div>
-        <div
-            class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
+        <div class="p-4 bg-[#017236] hover:bg-green-900 shadow rounded-2xl text-white flex items-center justify-between">
             <div>
                 <h3 class="text-sm font-semibold ">Branches</h3>
                 <p class="text-md font-bold">Total Branches</p>

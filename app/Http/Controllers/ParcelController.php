@@ -19,7 +19,7 @@ class ParcelController extends Controller
      */
     public function index()
     {
-        $parcels = Parcel::with(['customer', 'originBranch', 'destinationBranch', 'staff'])->get();
+        $parcels = Parcel::with(['customer', 'originBranch', 'destinationBranch', 'staff'])->latest()->paginate(10);
         return view('parcels.index', compact('parcels'));
     }
 

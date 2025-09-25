@@ -1,5 +1,9 @@
 <x-layouts.app>
-    <h1 class="text-2xl font-bold mb-4 text-black">Branch #{{ $branch->id }}</h1>
+    <div class="flex items-center justify-between px-4 pb-2">
+        <h1 class="text-2xl font-bold mb-4 text-black">Branch #{{ $branch->id }}</h1>
+        <a href="{{ route('branches.index') }}" class="bg-[color:var(--primary-color)] text-white px-4 py-2 rounded">Go Back</a>
+    </div>
+
 
     <table class="table-auto border-collapse border border-gray-300 w-full text-left">
     <tbody>
@@ -26,10 +30,6 @@
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">City</th>
             <td class="border border-gray-300 px-4 py-2 text-black">{{ $branch->city }}</td>
-        </tr>
-        <tr>
-            <th class="border border-gray-300 px-4 py-2 text-black">Country</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ $branch->country }}</td>
         </tr>
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">Status</th>

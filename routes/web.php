@@ -9,6 +9,7 @@ use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TrackingLogController;
+use App\Livewire\Tracking;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -19,6 +20,10 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::get('/tracking-component', Tracking::class)->name('tracking-component');
+Route::view('/tracking', 'tracking')
+    ->name('tracking');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
