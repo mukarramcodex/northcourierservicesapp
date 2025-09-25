@@ -16,7 +16,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with(['parcel', 'customer', 'staff', 'branch'])->latest()->paginate(10);
+        $payments = Payment::with(['parcel', 'customer', 'staff', 'branch'])->latest()->paginate(5);
         return view('payments.index', compact('payments'));
     }
 

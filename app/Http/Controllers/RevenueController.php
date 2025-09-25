@@ -15,7 +15,7 @@ class RevenueController extends Controller
      */
     public function index()
     {
-        $revenues = Revenue::with(['parcel','branch','staff'])->get();
+        $revenues = Revenue::with(['parcel','branch','staff'])->latest()->paginate(5);
         return view('revenues.index', compact('revenues'));
     }
 

@@ -13,7 +13,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staff = Staff::with('branch')->get();
+        $staff = Staff::with('branch')->latest()->paginate(5);
         return view('staff.index', compact('staff'));
     }
 
