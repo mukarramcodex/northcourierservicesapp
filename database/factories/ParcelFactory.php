@@ -22,7 +22,7 @@ class ParcelFactory extends Factory
         return [
             'tracking_number' => 'NCS' . $this->faker->unique()->numerify('######'),
             'booking_id' => $this->faker->unique()->numerify('####'),
-            'receipt_number' => 'NCS' . $this->faker->unique()->numerify('####'),
+            'receipt_number' => $this->faker->unique()->numberBetween(01,9999),
             'customer_id' => Customer::all()->random()->id,
             'receiver_name' => $this->faker->randomElement([
                 'Unver Kharal',
@@ -95,9 +95,9 @@ class ParcelFactory extends Factory
             'booking_time' => $this->faker->dateTimeBetween('-2 week', 'now'),
             'weight' => $this->faker->randomFloat(2, 1, 10, 0.5, 0.7, 25, 50),
             // 'price' => $this->faker->randomFloat(250, 138, 1740, 5680, 540, 3570, 540),
-            'origin_branch_id' => Branch::all()->random()->id,
-            'destination_branch_id' => Branch::all()->random()->id,
-            'assigned_staff_id' => Staff::all()->random()->id,
+            'origin_branch_id' => Branch::all()->random()->name,
+            'destination_branch_id' => Branch::all()->random()->name,
+            'assigned_staff_id' => Staff::all()->random()->name,
             'status' => $this->faker->randomElement(['Pending', 'In Transit', 'Delivered']),
         ];
     }
