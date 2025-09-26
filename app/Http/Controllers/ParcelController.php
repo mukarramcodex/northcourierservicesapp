@@ -17,10 +17,31 @@ class ParcelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Parcel::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('tracking_number', 'like', "%$search%")
+                    ->orWhere('receiver_name', 'like', "%$search%")
+                    ->orWhere('receiver_phone', 'like', "%$search%");
+            });
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $sortField = $request->get('sortField', 'id');
+        $sortDirection = $request->get('sortDirection', 'asc');
+        $query->orderBy($sortField, $sortDirection);
+
+        $parcels = $query->paginate(10)->appends($request->query());
+
         $parcels = Parcel::with(['customer', 'originBranch', 'destinationBranch', 'staff'])->latest()->paginate(5);
-        return view('parcels.index', compact('parcels'));
+        return view('parcels.index', compact('parcels', 'sortField', 'sortDirection'));
     }
 
     /**
@@ -126,7 +147,7 @@ class ParcelController extends Controller
     public function parcelpdf($tracking_number)
     {
         $parcel = Parcel::where('tracking_number', $tracking_number)
-            ->with('bookingOfficer')
+            ->with('assigned_staff_id')
             ->firstOrFail();
 
         $generator = new BarcodeGeneratorSVG();
@@ -139,10 +160,11 @@ class ParcelController extends Controller
         $pdfPath = storage_path('app/public/' . $filename);
 
         Browsershot::html($html)
-        ->format('A4')
-        ->margins(10, 10, 10, 10) // optional: set margins
-        ->showBackground() // include CSS background
-        ->save($pdfPath);
+            ->paperSize(3.94,5.91)
+            ->landscape()
+            ->margins(1, 1, 1, 1) // optional: set margins
+            ->showBackground() // include CSS background
+            ->save($pdfPath);
         return response()->download($pdfPath)->deleteFileAfterSend(true);
     }
 }

@@ -6,65 +6,68 @@
     <style>
         body {
             font-family: DejaVu Sans, sans-serif;
-            font-size: 12px;
-            margin: 20px;
+            font-size: 10px;
+            margin: 0;
             color: #000;
         }
 
         .receipt-container {
             border: 1px solid #000;
-            padding: 20px;
+            padding: 5px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             border-bottom: 1px solid #000;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
         }
 
         .company-name {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
         }
 
         .receipt-number {
-            margin-top: 10px;
+            margin-top: 3px;
+            font-size: 11px;
             font-weight: bold;
         }
 
         .details-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+            font-size: 9px;
         }
 
         .details-table td {
-            padding: 5px;
+            padding: 2px;
             vertical-align: top;
         }
 
         .label {
             font-weight: bold;
-            width: 120px;
+            width: 70px;
         }
 
         .section-title {
             font-weight: bold;
-            margin-top: 10px;
-            margin-bottom: 5px;
+            margin: 5px 0 3px 0;
+            font-size: 10px;
         }
 
         .items-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+            font-size: 9px;
         }
 
         .items-table th,
         .items-table td {
             border: 1px solid #000;
-            padding: 8px;
+            padding: 2px;
             text-align: left;
         }
 
@@ -72,42 +75,41 @@
             background-color: #eee;
         }
 
-        .total-section {
-            text-align: right;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
         .barcode-section {
             text-align: center;
-            margin: 30px 0;
+            margin: 5px 0;
+        }
+
+        .barcode-section img {
+            max-width: 90%;
+            height: auto;
         }
 
         .barcode-text {
-            margin-top: 5px;
+            margin-top: 2px;
             font-family: monospace;
+            font-size: 10px;
         }
 
         .footer {
-            margin-top: 30px;
+            margin-top: 5px;
             text-align: center;
-            font-size: 10px;
+            font-size: 8px;
             border-top: 1px solid #000;
-            padding-top: 10px;
+            padding-top: 3px;
         }
 
         .footer-content {
             font-style: italic;
-            margin: 3px;
+            margin: 1px;
         }
     </style>
 </head>
 <body>
     <div class="receipt-container">
         <div class="header">
-            <div class="company-name">NCS TRACKING LTD.</div>
-            <div>www.ncstracking.com</div>
+            <div class="company-name">North Courier Services</div>
+            <div>www.northcourierservices.pk</div>
             <div class="receipt-number">RECEIPT # {{ $parcel->receipt_number }}</div>
         </div>
 
@@ -128,13 +130,13 @@
                 <td class="label">PAYMENT:</td>
                 <td>{{ $parcel->payment_status }}</td>
                 <td class="label">BOOKING POINT:</td>
-                <td>{{ $parcel->booking_point }}</td>
+                <td>{{ $parcel->originBranch->name }}</td>
             </tr>
             <tr>
                 <td class="label">STATUS:</td>
                 <td>{{ $parcel->status }}</td>
                 <td class="label">DELIVERY POINT:</td>
-                <td>{{ $parcel->delivery_point }}</td>
+                <td>{{ $parcel->destinationBranch->name }}</td>
             </tr>
         </table>
 

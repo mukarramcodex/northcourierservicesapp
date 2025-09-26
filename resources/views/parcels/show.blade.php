@@ -1,7 +1,10 @@
 <x-layouts.app>
      <div class="flex items-center justify-between px-4 pb-2">
         <h1 class="text-2xl font-bold mb-4 text-[color:var(--primary-color)]">Parcel #{{ $parcel->tracking_number }}</h1>
-        <a href="{{ route('parcels.index') }}" class="bg-[color:var(--primary-color)] text-white px-4 py-2 rounded">Go Back</a>
+        <div class="flex items-center justify-center gap-3 ">
+            <a href="{{ route('parcels.index') }}" class="bg-[color:var(--primary-color)] text-white px-4 py-2 rounded">Go Back </a>
+            <a href="{{ route('parcels.index') }}" class="bg-[color:var(--primary-color)] text-white px-4 py-2 rounded">Download ⬇️</a>
+        </div>
     </div>
 
     <table class="table-auto border-collapse border border-gray-300 w-full text-left">
@@ -16,13 +19,13 @@
             <th class="border border-gray-300 px-4 py-2 text-black">Status</th>
             <td class="border border-gray-300 px-4 py-2 text-black">{{ ucfirst($parcel->status) }}</td>
             <th class="border border-gray-300 px-4 py-2 text-black">Payment Status</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ ucfirst($parcel->status) }}</td>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ ucfirst($parcel->payment) }}</td>
         </tr>
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">Customer Name</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->customer_id }}</td>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->customer->name }}</td>
             <th class="border border-gray-300 px-4 py-2 text-black">Customer Phone</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->customer_id }}</td>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->customer->phone }}</td>
         </tr>
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">Receiver Name</th>
@@ -75,15 +78,15 @@
 
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">Origin Branch</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->origin_branch_id }}</td>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->originBranch->name }}</td>
             <th class="border border-gray-300 px-4 py-2 text-black">Destination Branch</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->destination_branch_id }}</td>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->destinationBranch->name }}</td>
         </tr>
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">Staff Name</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->assigned_staff_id }}</td>
-            <th class="border border-gray-300 px-4 py-2 text-black">Staff Phone#</th>
-            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->assigned_staff_id }}</td>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->staff->name }}</td>
+            <th class="border border-gray-300 px-4 py-2 text-black">Staff Phone</th>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->staff->phone }}</td>
         </tr>
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">Shipped At</th>
