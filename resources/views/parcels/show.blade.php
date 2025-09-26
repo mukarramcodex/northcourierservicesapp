@@ -103,6 +103,8 @@
         <tr>
             <th class="border border-gray-300 px-4 py-2 text-black">Booking Time</th>
             <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->booking_time }}</td>
+            <th class="border border-gray-300 px-4 py-2 text-black">Receipt Number</th>
+            <td class="border border-gray-300 px-4 py-2 text-black">{{ $parcel->receipt_number }}</td>
         </tr>
     </tbody>
 </table>
