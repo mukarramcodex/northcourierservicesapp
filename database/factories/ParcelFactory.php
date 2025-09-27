@@ -95,9 +95,9 @@ class ParcelFactory extends Factory
             'booking_time' => $this->faker->dateTimeBetween('-2 week', 'now'),
             'weight' => $this->faker->randomFloat(2, 1, 10, 0.5, 0.7, 25, 50),
             // 'price' => $this->faker->randomFloat(250, 138, 1740, 5680, 540, 3570, 540),
-            'origin_branch_id' => Branch::all()->random()->name,
-            'destination_branch_id' => Branch::all()->random()->name,
-            'assigned_staff_id' => Staff::all()->random()->name,
+            'origin_branch_id' => Branch::all()->random()->id,
+            'destination_branch_id' => Branch::all()->random()->id,
+            'assigned_staff_id' => Staff::all()->random()->id,
             'status' => $this->faker->randomElement(['Pending', 'In Transit', 'Delivered']),
         ];
     }
