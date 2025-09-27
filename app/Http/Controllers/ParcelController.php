@@ -52,8 +52,10 @@ class ParcelController extends Controller
         $customers = Customer::all();
         $branches  = Branch::all();
         $staff     = Staff::all();
+
         $lastReceipt = Parcel::orderBy('id', 'desc')->value('receipt_number');
         $nextReceipt = $lastReceipt ? (int)$lastReceipt + 1 : 10000;
+
         return view('parcels.create', compact('customers', 'branches', 'staff') + [
             'nextReceipt' => str_pad($nextReceipt, 4, '0', STR_PAD_LEFT),
         ]);
