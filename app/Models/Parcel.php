@@ -13,6 +13,7 @@ class Parcel extends Model
         'tracking_number',
         'booking_id',
         'receipt_number',
+        'booking_time',
         'qr_code',
         'customer_id',
         'receiver_name',
@@ -25,6 +26,7 @@ class Parcel extends Model
         'goods_description',
         'remarks',
         'fare',
+        'other_charges',
         'discount',
         'amount',
         'total_amount',
@@ -36,6 +38,11 @@ class Parcel extends Model
         'delivered_at',
         'orgin',
         'destination',
+        'payment_type',
+        'received_amount',
+        'due_amount',
+        'send_risk',
+        'time_limit',
     ];
 
     public function customer()

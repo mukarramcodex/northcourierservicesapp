@@ -2,227 +2,146 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Parcel Details</title>
+    <title>Parcel Details Slip</title>
     <style>
         body {
             font-family: DejaVu Sans, sans-serif;
-            font-size: 10px;
-            margin: 0;
+            font-size: 12px;
             color: #000;
+            margin: 0;
+            padding: 0;
         }
-
-        .receipt-container {
+        .slip-container {
             border: 1px solid #000;
-            padding: 5px;
+            padding: 10px;
+            width: 800px;
+            margin: auto;
         }
-
         .header {
-            text-align: center;
-            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
             border-bottom: 1px solid #000;
             padding-bottom: 5px;
+            margin-bottom: 5px;
         }
-
-        .company-name {
+        .header .left,
+        .header .right {
+            width: 48%;
+        }
+        .header h2 {
+            margin: 0;
             font-size: 16px;
             font-weight: bold;
-        }
-
-        .receipt-number {
-            margin-top: 3px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .details-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 5px;
-            font-size: 9px;
-        }
-
-        .details-table td {
-            padding: 2px;
-            vertical-align: top;
-        }
-
-        .label {
-            font-weight: bold;
-            width: 70px;
-        }
-
-        .section-title {
-            font-weight: bold;
-            margin: 5px 0 3px 0;
-            font-size: 10px;
-        }
-
-        .items-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 5px;
-            font-size: 9px;
-        }
-
-        .items-table th,
-        .items-table td {
-            border: 1px solid #000;
-            padding: 2px;
-            text-align: left;
-        }
-
-        .items-table th {
-            background-color: #eee;
-        }
-
-        .barcode-section {
             text-align: center;
-            margin: 5px 0;
         }
-
-        .barcode-section img {
-            max-width: 90%;
-            height: auto;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
         }
-
-        .barcode-text {
-            margin-top: 2px;
-            font-family: monospace;
-            font-size: 10px;
+        table, th, td {
+            border: 1px solid #000;
         }
-
+        th, td {
+            font-size: 12px;
+            padding: 4px;
+            text-align: center;
+        }
         .footer {
             margin-top: 5px;
-            text-align: center;
-            font-size: 8px;
+            font-size: 10px;
             border-top: 1px solid #000;
-            padding-top: 3px;
+            padding-top: 5px;
+            text-align: center;
         }
-
-        .footer-content {
-            font-style: italic;
-            margin: 1px;
+        .note {
+            font-size: 9px;
+            text-align: left;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="receipt-container">
-        <div class="header">
-            <div class="company-name">North Courier Services</div>
-            <div>www.northcourierservices.pk</div>
-            <div class="receipt-number">RECEIPT # {{ $parcel->receipt_number }}</div>
+<div class="slip-container">
+    <!-- Header Section -->
+    <div class="header">
+        <div class="left">
+            <p><strong>Customer Copy</strong></p>
+            <p><strong>Booking ID:</strong> {{ $parcel->booking_id }}</p>
+            <p><strong>Destination:</strong> {{ $parcel->destination }}</p>
+            <p><strong>To:</strong> {{ $parcel->receiver_name }}</p>
+            <p><strong>Mobile:</strong> {{ $parcel->receiver_phone }}</p>
+            <p><strong>CNIC:</strong> {{ $parcel->receiver_cnic }}</p>
         </div>
-
-        <table class="details-table">
-            <tr>
-                <td class="label">TRACKING #</td>
-                <td>{{ $parcel->tracking_number }}</td>
-                <td class="label">ORIGIN:</td>
-                <td>{{ $parcel->origin }}</td>
-            </tr>
-            <tr>
-                <td class="label">BOOKING DATE:</td>
-                <td>{{ $parcel->booking_time }}</td>
-                <td class="label">DESTINATION:</td>
-                <td>{{ $parcel->destination }}</td>
-            </tr>
-            <tr>
-                <td class="label">PAYMENT:</td>
-                <td>{{ $parcel->payment_status }}</td>
-                <td class="label">BOOKING POINT:</td>
-                <td>{{ $parcel->originBranch->name }}</td>
-            </tr>
-            <tr>
-                <td class="label">STATUS:</td>
-                <td>{{ $parcel->status }}</td>
-                <td class="label">DELIVERY POINT:</td>
-                <td>{{ $parcel->destinationBranch->name }}</td>
-            </tr>
-        </table>
-
-        <table class="details-table" style="width: 100%; margin-top: 20px;">
-            <tr>
-                <td style="width: 50%; vertical-align: top;">
-                    <strong>SENDER'S DETAILS</strong><br>
-                    <table style="width: 100%; margin-top: 5px;">
-                        <tr><td class="label">Name:</td><td>{{ $parcel->sender_name }}</td></tr>
-                        <tr><td class="label">Email:</td><td>{{ $parcel->sender_email }}</td></tr>
-                        <tr><td class="label">CNIC:</td><td>{{ $parcel->sender_cnic }}</td></tr>
-                        <tr><td class="label">Phone:</td><td>{{ $parcel->sender_phone }}</td></tr>
-                    </table>
-                </td>
-                <td style="width: 50%; vertical-align: top;">
-                    <strong>RECEIVER'S DETAILS</strong><br>
-                    <table style="width: 100%; margin-top: 5px;">
-                        <tr><td class="label">Name:</td><td>{{ $parcel->receiver_name }}</td></tr>
-                        <tr><td class="label">Email:</td><td>{{ $parcel->receiver_email }}</td></tr>
-                        <tr><td class="label">CNIC:</td><td>{{ $parcel->receiver_cnic }}</td></tr>
-                        <tr><td class="label">Phone:</td><td>{{ $parcel->receiver_phone }}</td></tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-
-        <div class="section-title">Product Details</div>
-        <table class="details-table">
-            <tr>
-                <td class="label">PACKING:</td>
-                <td>{{ $parcel->packing_type }}</td>
-                <td class="label">WEIGHT:</td>
-                <td>{{ $parcel->weight }} KG</td>
-            </tr>
-            <tr>
-                <td class="label">DESCRIPTION:</td>
-                <td>{{ $parcel->goods_description }}</td>
-                <td class="label">PIECES:</td>
-                <td>{{ $parcel->pieces }}</td>
-            </tr>
-            <tr>
-                <td class="label">REMARKS:</td>
-                <td>{{ $parcel->remarks }}</td>
-                <td class="label">PAYMENT:</td>
-                <td>{{ $parcel->payment_status }}</td>
-            </tr>
-            {{-- <tr>
-                <td class="label">STATUS:</td>
-                <td>{{ $parcel->status }}</td>
-                <td class="label">DELIVERY POINT:</td>
-                <td>{{ $parcel->delivery_point }}</td>
-            </tr> --}}
-        </table>
-        <table class="items-table">
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Fare</td>
-                    <td>{{ $parcel->fare }}</td>
-                </tr>
-                <tr>
-                    <td>Total Amount:</td>
-                    <td>{{ $parcel->total_amount }}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        {{-- <div class="total-section">
-            Total Amount: {{ $parcel->total_amount }}
-        </div> --}}
-
-        <div class="barcode-section">
-            <img src="data:image/svg+xml;base64,{{ $barcode }}" alt="Barcode" height="50">
-            <div class="barcode-text">{{ $parcel->tracking_number }}</div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-content">Thank you for your business!</div>
-            <div class="footer-content">NCS TRACKING MANAGEMENT</div>
-            <div class="footer-content">www.ncstracking.com</div>
+        <div class="right">
+            <h2>NCS</h2>
+            <p><strong>Booking at:</strong> {{ $parcel->booking_time }}</p>
+            <p><strong>Printing at:</strong> {{ now()->format('d-M-y H:i:s') }}</p>
+            <p><strong>Origin:</strong> {{ $parcel->origin }}</p>
+            <p><strong>From:</strong> {{ $parcel->customer->name }}</p>
+            <p><strong>Mobile:</strong> {{ $parcel->customer->phone }}</p>
+            <p><strong>CNIC:</strong> {{ $parcel->customer->cnic }}</p>
         </div>
     </div>
+
+    <!-- Parcel Table -->
+    <table>
+        <thead>
+        <tr>
+            <th>Sr#</th>
+            <th>Category</th>
+            <th>Good Type</th>
+            <th>Pack Type</th>
+            <th>Pack Qty</th>
+            <th>Unit Qty</th>
+            <th>Total Wt. Kg</th>
+            <th>Dec. Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($parcel->items as $index => $item)
+        <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $item->category }}</td>
+            <td>{{ $item->good_type }}</td>
+            <td>{{ $item->pack_type }}</td>
+            <td>{{ $item->pack_qty }}</td>
+            <td>{{ $item->unit_qty }}</td>
+            <td>{{ $item->weight }}</td>
+            <td>{{ number_format($item->declared_value, 0) }}</td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
+
+    <!-- Payment Info -->
+    <table>
+        <tr>
+            <td><strong>Type:</strong> {{ strtoupper($parcel->payment_type) }}</td>
+            <td><strong>Amount:</strong> {{ $parcel->amount }}</td>
+            <td><strong>Other Charges:</strong> {{ $parcel->other_charges }}</td>
+            <td><strong>Received Amount:</strong> {{ $parcel->received_amount }}</td>
+            <td><strong>Due Amount:</strong> {{ $parcel->due_amount }}</td>
+            <td><strong>Send Risk:</strong> {{ $parcel->send_risk ? 'YES' : 'NO' }}</td>
+            <td><strong>Claim:</strong> {{ $parcel->claim ? 'YES' : 'NO' }}</td>
+            <td><strong>Time Limit:</strong> {{ $parcel->time_limit ? 'YES' : 'NO' }}</td>
+        </tr>
+    </table>
+
+    <!-- Notes -->
+    <div class="note">
+        <p><strong>Note:</strong>In case of loss or damage, 20% of the booking charges of the goods’ value will be applicable.
+        Parcel will not be delivered without Original CNIC.
+        Please receive your parcels within 7 days, otherwise store charges will apply.
+        In case of loss of goods, company may pay 10 times of maximum booking charges of the value of the goods
+        as damage. If non-custom paid items, the company will not be liable.
+        Godown charges are also applicable at the time of delivery.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>For More Information Contact: +92-312-3456789  – +92-312-3456789 or visit www.northcourierservies.pk </p>
+    </div>
+</div>
 </body>
 </html>

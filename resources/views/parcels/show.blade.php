@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold mb-4 text-[color:var(--primary-color)]">Parcel #{{ $parcel->tracking_number }}</h1>
         <div class="flex items-center justify-center gap-3 ">
             <a href="{{ route('parcels.index') }}" class="bg-[color:var(--primary-color)] text-white px-4 py-2 rounded">Go Back </a>
-            <a href="{{ route('parcels.index') }}" class="bg-[color:var(--primary-color)] text-white px-4 py-2 rounded">Download ⬇️</a>
+            <a href="#" class="bg-[color:var(--primary-color)] text-white px-4 py-2 rounded">Download ⬇️</a>
         </div>
     </div>
 

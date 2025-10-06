@@ -20,32 +20,66 @@ class ParcelFactory extends Factory
     public function definition(): array
     {
         return [
-            'tracking_number' => 'NCS' . $this->faker->unique()->numerify('######'),
-            'booking_id' => $this->faker->unique()->numerify('####'),
-            'receipt_number' => $this->faker->unique()->numberBetween(01,9999),
-            'customer_id' => Customer::all()->random()->id,
-            'receiver_name' => $this->faker->randomElement([
-                'Unver Kharal',
-                'Alakurt Shambhani',
-                'Shaamikh Ibrahim',
-                'Hooman Dar',
-                'Sait Longi',
-                'Tekinalp Orakzai',
-                'Beser Mahsud',
-                'Erkin Sabzvari',
-                'Jaarallah Muhammadzai',
-                'Ahmed Bukhari',
-                'Sooran Kenagzai',
-                'Bastug Mughal',
-                'Siddeeqi Jalbani',
-                'Yolbul Bappi',
-                'Kaamil Saadi'
-            ]),
+            'tracking_number' => 'NCS' . str_pad($this->faker->unique()->numberBetween(1, 999999), 6, '0', STR_PAD_LEFT),
+            'booking_id' => str_pad($this->faker->unique()->numberBetween(1, 999999), 6, '0', STR_PAD_LEFT),
+            'receipt_number' => str_pad($this->faker->unique()->numberBetween(10000, 99999), 5, '0', STR_PAD_LEFT),
+            'qr_code' => $this->faker->uuid(),
+
+            // Sender / Receiver
+            'customer_id' => Customer::inRandomOrder()->first()->id ?? Customer::factory(),
+            'receiver_name' => $this->faker->name,
             'receiver_phone' => $this->faker->unique()->numerify('03#########'),
-            'receiver_cnic' => $this->faker->unique()->numerify('#####-#######-#'),
+            'receiver_cnic' => $this->faker->unique()->numerify('#############'),
             'receiver_address' => $this->faker->address(),
             'receiver_email' => $this->faker->unique()->safeEmail(),
-            // 'delivery_date' => $this->faker->dateTimeBetween('+2 days', '+10 days')->format('d-m-Y'),
+
+            // Parcel Info
+            'parcel_type' => $this->faker->randomElement([
+                'Box',
+                'Envelop',
+                'Fragile',
+                'Bag',
+                'Parcel',
+                'Small_parcel',
+                'Courier',
+                'Stack'
+            ]),
+            'weight' => $this->faker->numberBetween(0.5, 40) . 'kg',
+            'dimension' => $this->faker->randomElement([
+                '10X1010',
+                '12X15X8',
+                '20X20X15'
+            ]),
+            'goods_description' => $this->faker->sentence(5, true),
+            'remarks' => $this->faker->optional()->randomElement([
+                'Deliver before 6 PM.',
+                'Handle with care, fragile item.',
+                'Customer will collect from branch.',
+                'Ensure proper documentation is attached.',
+                'Keep upright during transport.'
+            ]),
+
+            // Charges
+            'fare' => $this->faker->numberBetween(250, 5000),
+            'discount' => $this->faker->numberBetween(0, 500),
+            'amount' => $this->faker->numberBetween(500, 6000),
+            'total_amount' => $this->faker->numberBetween(1000, 6000),
+            'payment_type' => $this->faker->randomElement(['Cash', 'Card', 'Online']),
+            'received_amount' => $this->faker->numberBetween(500, 5000),
+            'due_amount' => $this->faker->numberBetween(0, 2000),
+
+
+            // Status
+            'status' => $this->faker->randomElement(['Pending', 'In Transit', 'Delivered']),
+
+            // Branch & Staff
+            'origin_branch_id' => Branch::inRandomOrder()->first()->id ?? Branch::factory(),
+            'destination_branch_id' => Branch::inRandomOrder()->first()->id ?? Branch::factory(),
+            'assigned_staff_id' => Staff::inRandomOrder()->first()->id ?? Staff::factory(),
+
+            // Delivery Info
+            'shipped_at' => fake()->dateTimeBetween('-1 month', 'now'),
+            'delivered_at' => fake()->dateTimeBetween('now', '+1 month'),
             'origin' => $this->faker->randomElement([
                 'Karachi',
                 'Lahore',
@@ -68,37 +102,12 @@ class ParcelFactory extends Factory
                 'Quetta',
                 'Jhelum'
             ]),
-            'shipped_at' => fake()->dateTimeBetween('-1 month', 'now'),
-            'delivered_at' => fake()->dateTimeBetween('now', '+1 month'),
-            'dimension' => $this->faker->randomElement([
-                '10X1010',
-                '12X15X8',
-                '20X20X15'
-            ]),
-            'parcel_type' => $this->faker->randomElement([
-                'box',
-                'envelop',
-                'cotton',
-                'bag',
-                'parcel',
-                'small_parcel',
-                'courier',
-                'small_courier'
-            ]),
-            'stack' => $this->faker->numberBetween(1, 12),
-            'goods_description' => $this->faker->sentence(5),
-            'remarks' => $this->faker->sentence(5),
-            'fare' => $this->faker->randomFloat(248, 152, 2300, 459, 230, 250, 5000, 460, 3200, 1149, 1278, 560, 4560, 1230, 4890, 456),
-            'discount' => $this->faker->randomFloat(5, 6, 8, 15, 45, 50, 25, 13, 5, 9, 2, 10, 5, 7),
-            'amount' => $this->faker->randomFloat(248, 152, 2300, 459, 230, 250, 5000, 460, 3200, 1149, 1278, 560, 4560, 1230, 4890, 456),
-            'total_amount' => $this->faker->randomFloat(248, 152, 2300, 459, 230, 250, 5000, 460, 3200, 1149, 1278, 560, 4560, 1230, 4890, 456),
             'booking_time' => $this->faker->dateTimeBetween('-2 week', 'now'),
-            'weight' => $this->faker->randomFloat(2, 1, 10, 0.5, 0.7, 25, 50),
-            // 'price' => $this->faker->randomFloat(250, 138, 1740, 5680, 540, 3570, 540),
-            'origin_branch_id' => Branch::all()->random()->id,
-            'destination_branch_id' => Branch::all()->random()->id,
-            'assigned_staff_id' => Staff::all()->random()->id,
-            'status' => $this->faker->randomElement(['Pending', 'In Transit', 'Delivered']),
+
+            // Risk & Claim
+            'send_risk' => $this->faker->randomElement(['YES', 'NO']),
+            'claim' => $this->faker->randomElement(['YES', 'NO']),
+            'time_limit' => $this->faker->randomElement(['YES', 'NO']),
         ];
     }
 }

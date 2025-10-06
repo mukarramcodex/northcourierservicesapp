@@ -18,7 +18,6 @@
                     <flux:navlist.item icon="user-group" :href="route('customers.index')" :current="request()->routeIs('customers')" wire:navigate>{{ __('Customers') }}</flux:navlist.item>
                     <flux:navlist.item icon="building-office" :href="route('branches.index')" :current="request()->routeIs('branches')" wire:navigate>{{ __('Branches') }}</flux:navlist.item>
                     <flux:navlist.item icon="chart-bar" :href="route('revenues.index')" :current="request()->routeIs('revenues')" wire:navigate>{{ __('Revenues') }}</flux:navlist.item>
-                    <flux:navlist.item icon="banknotes" :href="route('payments.index')" :current="request()->routeIs('payments')" wire:navigate>{{ __('Payments') }}</flux:navlist.item>
                     <flux:navlist.item icon="users" :href="route('staff.index')" :current="request()->routeIs('staff')" wire:navigate>{{ __('Staffs') }}</flux:navlist.item>
                     <flux:navlist.item icon="bolt" :href="route('tracking-component')" :current="request()->routeIs('tracking-component')" wire:navigate>{{ __('Tracking-Component') }}</flux:navlist.item>
                     <flux:navlist.item icon="bolt" :href="route('tracking')" :current="request()->routeIs('tracking')" wire:navigate>{{ __('Tracking') }}</flux:navlist.item>

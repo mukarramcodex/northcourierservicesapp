@@ -17,28 +17,31 @@ return new class extends Migration
             // Tracking
             $table->string('tracking_number')->unique();
             $table->string('booking_id')->unique();
-            $table->string('receipt_number')->nullable();
+            $table->string('receipt_number')->unique();
             $table->string('qr_code')->nullable();
 
             // Sender / Receiver
             $table->unsignedBigInteger('customer_id')->nullable(); // Sender
             $table->string('receiver_name');
             $table->string('receiver_phone');
-            $table->string('receiver_email');
+            $table->string('receiver_email')->nullable();
             $table->string('receiver_address');
-            $table->string('receiver_cnic', 15)->nullable();
+            $table->string('receiver_cnic', 13)->nullable();
 
             // Parcel Info
             $table->string('parcel_type')->nullable(); // e.g., Document, Box, Fragile
             $table->decimal('weight', 8, 2)->nullable();
-            $table->decimal('stack')->nullable();
             $table->string('dimension')->nullable();
             $table->string('goods_description')->nullable();
             $table->text('remarks')->nullable();
+
             $table->decimal('fare', 10, 2)->nullable();
             $table->decimal('discount', 10, 2)->nullable();
-            $table->decimal('amount', 10, 2)->nullable();
-            $table->decimal('total_amount', 10, 2)->nullable();
+            $table->decimal('amount', 10, 2)->default(0);
+            $table->decimal('total_amount', 10, 2)->default(0);
+
+            $table->enum('send_risk', ['YES', 'NO'])->default('NO');
+            $table->enum('claim', ['YES', 'NO'])->default('NO');
 
             // Status
             $table->enum('status', [
